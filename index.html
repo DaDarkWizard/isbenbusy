@@ -54,11 +54,11 @@
         request.execute(function (resp) {
           console.log(resp);
           console.log(resp.result.calendars[userEmail]);
-          var busy = resp.result.calendars[userEmail];
+          var busy = JSON.parse(resp.result.calendars[userEmail]);
           console.log(busy);
           console.log(busy.length);
           console.log(busy?.length);
-          if(busy.length > 0) {
+          if(busy[0]) {
             console.log("Busy");
             document.getElementById("text").innerText = "Yes";
             document.getElementById("theBody").style.backgroundColor = "#ff0000";
