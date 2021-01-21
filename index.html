@@ -39,13 +39,18 @@
   function makeApiCall() {
     var today = new Date();
     gapi.client.load('calendar', 'v3', function () {
-        var request = gapi.client.calendar.events.list({
-            'calendarId' : userEmail,
-            'timeZone' : userTimeZone, 
-            'singleEvents': true, 
-            'timeMin': today.toISOString(), //gathers only events not happened yet
-            'maxResults': maxRows, 
-            'orderBy': 'startTime'});
+        var request = gapi.client.calendar.freebusy.query({
+            'timeMin': today.toISOString(),
+            'timeMax': (new Date(today.getTime() + 30*60000)).toISOString(),
+            'timeZone' : userTimeZone,
+            'groupExpansionMax': maxRows,
+            'calendarExpansionMax': 10,
+            'items': [
+              {
+                "id": userEmail
+              }
+            ]
+        });
         request.execute(function (resp) {
           console.log(resp);
         });
