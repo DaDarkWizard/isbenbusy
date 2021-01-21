@@ -1,7 +1,59 @@
 <!DOCTYPE html>
+<head>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+  function start() {
+    // 2. Initialize the JavaScript client library.
+    gapi.client.init({
+      'apiKey': 'AIzaSyB3rjItCKvTd1oSB88ZNK0A5qCaFTj_sJM',
+      // clientId and scope are optional if auth is not required.
+      'clientId': '306171456013-2108bnui86crn0i0ph9d124u6l6vuqbv.apps.googleusercontent.com',
+      'scope': 'profile',
+    }).then(function() {
+      // 3. Initialize and make the API request.
+      return gapi.client.request({
+      'path': 'https://www.googleapis.com/calendar/v3/freeBusy?alt=json',
+      'data': {
+                "timeMin": "2021-01-21T05:00:00.00Z",
+                "timeMax": "2021-01-22T04:59:59.99Z",
+                "timeZone": "Eastern",
+                "groupExpansionMax": 10,
+                "calendarExpansionMax": 10,
+                "items": [
+                  {
+                    "id": "bchodsdo@mtu.edu"
+                  }
+                ]
+              }
+      })
+    }).then(function(response) {
+      console.log(response.result);
+    }, function(reason) {
+      console.log('Error: ' + reason.result.error.message);
+    });
+  };
+  // 1. Load the JavaScript client library.
+  gapi.load('client', start);
+  </script>
+</head>
 <body style="background-color:#33cc33;color:#ffffff;font-family: Arial, Helvetica, sans-serif;">
   <script type="text/javascript">
+    window.onload = function() {
+      //getBusy();
+    };
   </script>
   <h1 style="text-align:center;">No</h1>
+  <p id="demo"></p>
   <iframe src="https://calendar.google.com/calendar/embed?src=bchodsdo%40mtu.edu&ctz=America%2FDetroit" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
 </body>
