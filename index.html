@@ -55,9 +55,11 @@
           console.log(resp);
           console.log(resp.result.calendars[userEmail]);
           var busy = resp.result.calendars[userEmail];
+          console.log(busy);
+          console.log(busy.length);
+          console.log(busy?.length);
           if(busy.length > 0) {
             console.log("Busy");
-            console.log(busy?.length);
             document.getElementById("text").innerText = "Yes";
             document.getElementById("theBody").style.backgroundColor = "#ff0000";
           }
