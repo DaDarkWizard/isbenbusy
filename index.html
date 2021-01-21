@@ -22,7 +22,7 @@
       'scope': 'profile',
     }).then(function() {
       // 3. Initialize and make the API request.
-      return gapi.client.request({
+      return gapi.client.calendar.freebusy({
       'path': 'https://www.googleapis.com/calendar/v3/freeBusy?alt=json',
       'data': {
                 "timeMin": "2021-01-21T05:00:00.00Z",
