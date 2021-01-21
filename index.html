@@ -41,7 +41,7 @@
     gapi.client.load('calendar', 'v3', function () {
         var request = gapi.client.calendar.freebusy.query({
             'timeMin': today.toISOString(),
-            'timeMax': (new Date(today.getTime() + 30*60000)).toISOString(),
+            'timeMax': (new Date(today.getTime() + 1*60000)).toISOString(),
             'timeZone' : userTimeZone,
             'groupExpansionMax': maxRows,
             'calendarExpansionMax': 10,
@@ -53,6 +53,7 @@
         });
         request.execute(function (resp) {
           console.log(resp);
+          console.log(resp.result.calendars[userEmail]);
         });
     });
   }
