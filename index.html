@@ -37,6 +37,7 @@
   }
 
   function makeApiCall() {
+    var today = new Date();
     gapi.client.load('calendar', 'v3', function () {
         var request = gapi.client.calendar.events.list({
             'calendarId' : userEmail,
